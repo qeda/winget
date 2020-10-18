@@ -1,0 +1,30 @@
+name: Deploy
+
+on:
+  push:
+    branches: [master]
+
+jobs:
+  build:
+    runs-on: ubuntu-20.04
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Copy Windows SFX
+        run: |
+          wget -nc -P ./deploy/ https://github.com/qeda/winget/releases/download/assets/qeda-windows-x86_64-0.0.4.exe
+
+      - name: Setup `winget` repository (TODO)
+        run: |
+          wget -nc -P ./deploy/cache https://github.com/qeda/winget/releases/download/assets/source.msix
+          cp -frv manifests ./deploy/cache/
+
+      - name: Deploy
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./deploy
+          cname: winget.qeda.org
+          force_orphan: true
+          user_name: 'qedabot'
+          user_email: 'qedabot@users.noreply.github.com'
