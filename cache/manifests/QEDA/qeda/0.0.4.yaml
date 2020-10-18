@@ -1,0 +1,16 @@
+Id: QEDA.qeda
+Publisher: QEDA
+Name: qeda
+Version: 0.0.4
+AppMoniker: qeda
+Description: Tool for creating electronic component libraries
+Homepage: https://qeda.org
+License: MIT
+LicenseUrl: https://opensource.org/licenses/MIT
+Installers:
+  - Arch: x64
+    Url: https://github.com/qeda/pkg/releases/download/win/qeda-windows-x86_64-0.0.4.exe
+    Sha256: aedd75b06a7d09994ebc71553e31e05eb4be2964e0532078d5744f1c3689a3da
+    InstallerType: exe
+    Switches:
+        Silent: '-o"c:\Windows\System32" -y'
